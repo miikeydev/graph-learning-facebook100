@@ -59,3 +59,4 @@ if __name__ == "__main__":
     parser.add_argument("--graphs", nargs="*", default=["Caltech36", "Reed98", "Rice31", "Smith60"])
     args = parser.parse_args()
     run_q6(args.data_dir, args.graphs)
+    
