@@ -131,15 +131,11 @@ def run_for_graph(graph_path, fractions, metrics, ks, seed):
 
 def plot_curves(rows, out_dir):
     ensure_dir(out_dir)
-    
-    # On groupe les données par (Réseau, Fraction retirée)
-    # On ne groupe PLUS par métrique ici, car on veut les comparer
     grouped_data = {}
     for r in rows:
         key = (r["network"], r["fraction_removed"])
         grouped_data.setdefault(key, []).append(r)
 
-    # Couleurs pour distinguer les métriques
     styles = {
         "cn": {"color": "blue", "label": "Common Neighbors", "marker": "o"},
         "jaccard": {"color": "green", "label": "Jaccard", "marker": "s"},
@@ -147,15 +143,12 @@ def plot_curves(rows, out_dir):
     }
 
     for (net, frac), data_list in grouped_data.items():
-        # Séparer les données par métrique pour ce graphe/fraction
         metrics_data = {}
         for r in data_list:
             metrics_data.setdefault(r["metric"], []).append(r)
 
-        # --- Plot Precision ---
         plt.figure(figsize=(10, 6))
         for metric, points in metrics_data.items():
-            # Trier par k pour avoir une ligne propre
             points.sort(key=lambda x: x["k"])
             ks = [x["k"] for x in points]
             precs = [x["precision_at_k"] for x in points]
@@ -173,7 +166,6 @@ def plot_curves(rows, out_dir):
         plt.savefig(os.path.join(out_dir, filename_p), dpi=200)
         plt.close()
 
-        # --- Plot Recall ---
         plt.figure(figsize=(10, 6))
         for metric, points in metrics_data.items():
             points.sort(key=lambda x: x["k"])
