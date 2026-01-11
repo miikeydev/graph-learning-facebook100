@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+.pytest_cache/
+
+# LaTeX files temporaires
+Report/*.aux
+Report/*.log
+Report/*.out
+Report/*.fls
+Report/*.fdb_latexmk
+Report/*.synctex.gz
+Report/*.toc
+
+# VS Code
+.vscode/
+
+# Data files (trop volumineux, à télécharger séparément)
+data/
+
+# OS
+.DS_Store
+Thumbs.db
+
